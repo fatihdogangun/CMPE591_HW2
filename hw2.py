@@ -150,8 +150,8 @@ def main():
     np.save("save/episode_rewards.npy", np.array(episode_rewards))
     np.save("save/episode_rps.npy", np.array(episode_rps))
 
-    smoothed_rewards = np.convolve(episode_rewards, np.ones(20)/20, mode="valid")
-    smoothed_rps = np.convolve(episode_rps, np.ones(20)/20, mode="valid")
+    smoothed_rewards = np.convolve(episode_rewards, np.ones(400)/400, mode="valid")
+    smoothed_rps = np.convolve(episode_rps, np.ones(400)/400, mode="valid")
 
     plt.figure(figsize=(12, 5))
     plt.plot(episode_rewards)
