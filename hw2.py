@@ -10,6 +10,8 @@ from tqdm import tqdm
 
 from homework2 import Hw2Env
 
+# To train the agent, use main method
+
 N_ACTIONS = 8
 GAMMA = 0.99
 EPSILON_START = 1.0
@@ -193,5 +195,22 @@ def main():
     plt.savefig("smoothed_episode_rps.png")
     plt.close()
 
+def test():
+    env = Hw2Env(n_actions=N_ACTIONS, render_mode="gui")
+    policy_net = Network()
+    policy_net.load_state_dict(torch.load("save/policy_net.pth"))
+    policy_net.eval()
+    
+    state = env.high_level_state()
+    done = False
+    cumulative_reward = 0.0
+    while not done:
+        action = select_action(state, 0.0, policy_net)
+        _, reward, is_terminal, is_truncated = env.step(action)
+        done = is_terminal or is_truncated
+        cumulative_reward += reward
+    print(f"Total Reward = {cumulative_reward:.2f}")
+
 if __name__ == '__main__':
-   main()
+   #main() # train 
+   test()
