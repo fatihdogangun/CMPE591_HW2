@@ -1,6 +1,6 @@
 # CMPE591_HW2
 
-Reward points were smoothed by taking a moving average of 400 consecutive points and plotted. 
+Reward points were smoothed using a 400-point moving average and plotted. 
 
 *Reward per Episode*
 
